@@ -17,7 +17,7 @@
 */
 import React from "react";
 import Cookies from 'universal-cookie';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 // reactstrap components
 import {
   DropdownMenu,
@@ -56,8 +56,11 @@ class AdminNavbar extends React.Component {
   searchUser = (e) => {
     e.preventDefault();
     let action = "/dash/user/" + this.state.searchInput;
-    this.searchRef.current.action = action;
-    window.location.replace(action)
+    const history = useHistory();
+    history.push(action);
+    // browserHistory.push(action);d
+    // this.searchRef.current.action = action;
+    // window.location.replace(action)
   }
 
   render() {
@@ -71,7 +74,7 @@ class AdminNavbar extends React.Component {
             >
               {this.props.brandText}
             </Link>
-            <Form ref={this.searchRef} className="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto" onSubmit={this.searchUser}>
+            {/* <Form ref={this.searchRef} className="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto" onSubmit={this.searchUser}>
               <FormGroup className="mb-0">
                 <InputGroup className="input-group-alternative">
                   <InputGroupAddon addonType="prepend">
@@ -82,7 +85,7 @@ class AdminNavbar extends React.Component {
                   <Input placeholder="Search MC Name" type="text" onChange={e => this.setState({searchInput: e.target.value})} />
                 </InputGroup>
               </FormGroup>
-            </Form>
+            </Form> */}
             <Nav className="align-items-center d-none d-md-flex" navbar>
               <UncontrolledDropdown nav>
                 <DropdownToggle className="pr-0" nav>

@@ -10,10 +10,6 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
-    "compile-sass": "node-sass src/assets/scss/argon-dashboard-react.scss src/assets/css/argon-dashboard-react.css",
-    "minify-sass": "node-sass src/assets/scss/argon-dashboard-react.scss src/assets/css/argon-dashboard-react.min.css --output-style compressed",
-    "map-sass": "node-sass src/assets/scss/argon-dashboard-react.scss src/assets/css/argon-dashboard-react.css --source-map true",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -40,7 +36,7 @@
     "react-dom": "16.12.0",
     "react-google-maps": "9.4.5",
     "react-router-dom": "5.1.2",
-    "react-scripts": "4.0.0",
+    "react-scripts": "^3.4.1",
     "reactstrap": "8.6.0",
     "universal-cookie": "^4.0.4"
   },

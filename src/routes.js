@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import Index from "views/Index.js";
+import Index from "views/index.js";
 import Profile from "views/examples/Profile.js";
 import PublicProfile from "views/examples/PublicProfile";
 // import Maps from "views/examples/Maps.js";
@@ -23,6 +23,8 @@ import Login from "views/examples/Login.js";
 import Logout from "views/examples/Logout";
 // import Tables from "views/examples/Tables.js";
 // import Icons from "views/examples/Icons.js";
+
+import PlayerLookup from "views/PlayerLookup.js";
 
 var routes = [
   {
@@ -46,6 +48,13 @@ var routes = [
   //   component: Maps,
   //   layout: "/dash"
   // },
+  {
+    path: "/lookup",
+    name: "Player Lookup",
+    icon: "ni ni-single-02 text-yellow",
+    component: PlayerLookup,
+    layout: "/dash"
+  },
   {
     path: "/user-profile",
     name: "User Profile",
