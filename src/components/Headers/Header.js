@@ -29,15 +29,15 @@ class Header extends React.Component {
   }
 
   componentDidMount() {
-    Axios.get(`https://internal-api.palace.network/titan/stats/titanUsers`)
+    Axios.get(`http://localhost:3001/titan/stats/titanUsers`)
     .then(res => {
       this.setState({ titanUsers: res.data });
     });
-    Axios.get(`https://internal-api.palace.network/titan/stats/totalUsers`)
+    Axios.get(`http://localhost:3001/titan/stats/totalUsers`)
     .then(res => {
       this.setState({ totalPlayers: res.data });
     });
-    Axios.get(`https://internal-api.palace.network/titan/stats/totalHelps`)
+    Axios.get(`http://localhost:3001/titan/stats/totalHelps`)
     .then(res => {
       this.setState({ totalHelps: res.data });
     });

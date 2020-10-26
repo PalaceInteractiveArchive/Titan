@@ -47,7 +47,7 @@ class Profile extends React.Component {
     .then(res => {
       let i = res.data.id;
       i= i.substr(0,8)+"-"+i.substr(8,4)+"-"+i.substr(12,4)+"-"+i.substr(16,4)+"-"+i.substr(20)
-      Axios.get(`https://internal-api.palace.network/titan/stats/getFriends/${i}`)
+      Axios.get(`http://localhost:3001/titan/stats/getFriends/${i}`)
       .then(res2 => {
         this.setState({ userFriends: res2.data });
       });

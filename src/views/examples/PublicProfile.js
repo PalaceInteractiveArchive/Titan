@@ -50,15 +50,15 @@ class Profile extends React.Component {
 
     const { match: { params } } = this.props;
     this.setState({uName: params.id})
-    console.log(`https://internal-api.palace.network/titan/stats/getUser/${params.id}/${cookies.get('accessToken')}`);
-    Axios.get(`https://internal-api.palace.network/titan/stats/getUser/${params.id}/${cookies.get('accessToken')}`)
+    console.log(`http://localhost:3001/titan/stats/getUser/${params.id}/${cookies.get('accessToken')}`);
+    Axios.get(`http://localhost:3001/titan/stats/getUser/${params.id}/${cookies.get('accessToken')}`)
     .then(res1 => {
       if (Object.keys(res1.data).length === 0 && res1.data.constructor === Object) {
         window.location.replace('/dash')
       } else {
         this.setState({userInfo: res1.data})
         console.log(res1.data);
-        Axios.get(`https://internal-api.palace.network/titan/stats/getFriends/${res1.data.game.uuid}`)
+        Axios.get(`http://localhost:3001/titan/stats/getFriends/${res1.data.game.uuid}`)
         .then(res2 => {
             this.setState({ userFriends: res2.data });
         });
