@@ -1,20 +1,3 @@
-/*!
-
-=========================================================
-* Argon Dashboard React - v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 
 // reactstrap components
@@ -47,7 +30,10 @@ class Profile extends React.Component {
     .then(res => {
       let i = res.data.id;
       i= i.substr(0,8)+"-"+i.substr(8,4)+"-"+i.substr(12,4)+"-"+i.substr(16,4)+"-"+i.substr(20)
-      Axios.get(`https://internal-api.palace.network/titan/stats/getFriends/${i}`)
+      Axios.post(`https://internal-api.palace.network/titan/stats/getFriends/${i}`, {
+          accessToken: cookies.get('accessToken'),
+          user: cookies.get('user')
+      })
       .then(res2 => {
         this.setState({ userFriends: res2.data });
       });

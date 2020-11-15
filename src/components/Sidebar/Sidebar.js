@@ -64,6 +64,11 @@ class Sidebar extends React.Component {
   constructor(props) {
     super(props);
     this.activeRoute.bind(this);
+    this.searchRef = React.createRef();
+    this.state = {
+      searchInput: ''
+    }
+    this.searchUser = this.searchUser.bind(this);
   }
   // verifies if routeName is the one active (in browser input)
   activeRoute(routeName) {
@@ -100,6 +105,18 @@ class Sidebar extends React.Component {
       );
     });
   };
+
+  handleSearchChange(event) {
+    this.setState({searchInput: event.target.value});
+  }
+
+  searchUser = (e) => {
+    e.preventDefault();
+    let action = "/dash/user/" + this.state.searchInput;
+    this.searchRef.current.action = action;
+    window.location.replace(action)
+  }
+
   render() {
     const { bgColor, routes, logo } = this.props;
     let navbarBrandProps;
@@ -135,7 +152,7 @@ class Sidebar extends React.Component {
               <img
                 alt={logo.imgAlt}
                 className="navbar-brand-img"
-                src={require("assets/img/brand/palace-text.png")}
+                src={require("assets/img/brand/palace-text.png").default}
               />
             </NavbarBrand>
           ) : null}
@@ -181,11 +198,11 @@ class Sidebar extends React.Component {
                   <Col className="collapse-brand" xs="6">
                     {logo.innerLink ? (
                       <Link to={logo.innerLink}>
-                        <img alt={logo.imgAlt} src={require("assets/img/brand/palace-text.png")} />
+                        <img alt={logo.imgAlt} src={require("assets/img/brand/palace-text.png").default} />
                       </Link>
                     ) : (
                       <a href={logo.outterLink}>
-                        <img alt={logo.imgAlt} src={require("assets/img/brand/palace-text.png")} />
+                        <img alt={logo.imgAlt} src={require("assets/img/brand/palace-text.png").default} />
                       </a>
                     )}
                   </Col>
@@ -203,13 +220,13 @@ class Sidebar extends React.Component {
               </Row>
             </div>
             {/* Form */}
-            <Form className="mt-4 mb-3 d-md-none">
+            <Form ref={this.searchRef} className="mt-4 mb-3 d-md-none" onSubmit={this.searchUser}>
               <InputGroup className="input-group-rounded input-group-merge">
                 <Input
                   aria-label="Search"
                   className="form-control-rounded form-control-prepended"
-                  placeholder="Search"
-                  type="search"
+                  placeholder="Search MC Name"
+                  onChange={e => this.setState({searchInput: e.target.value})}
                 />
                 <InputGroupAddon addonType="prepend">
                   <InputGroupText>
@@ -246,7 +263,7 @@ Sidebar.propTypes = {
     // it will be rendered as simple <a href="...">...</a> tag
     outterLink: PropTypes.string,
     // the image src of the logo
-    imgSrc: PropTypes.string.isRequired,
+    //imgSrc: PropTypes.string.isRequired,
     // the alt for the img
     imgAlt: PropTypes.string.isRequired
   })

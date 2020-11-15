@@ -21,6 +21,8 @@ import PublicProfile from "views/examples/PublicProfile";
 // import Maps from "views/examples/Maps.js";
 import Login from "views/examples/Login.js";
 import Logout from "views/examples/Logout";
+import SupportCentre from "views/examples/SupportCentre";
+import SupportAdmin from "views/examples/ManagerAbsence"
 // import Tables from "views/examples/Tables.js";
 // import Icons from "views/examples/Icons.js";
 
@@ -82,6 +84,21 @@ var routes = [
     icon: "ni ni-key-25 text-info",
     component: Logout,
     layout: "/auth",
+    invisible: true
+  },
+  {
+    path: "/support",
+    name: "Support Centre",
+    icon: "ni ni-app text-info",
+    component: SupportCentre,
+    layout: "/dash"
+  },
+  {
+    path: "/support-admin",
+    name: "Support Admin",
+    icon: "ni ni-app text-info",
+    component: SupportAdmin,
+    layout: "/dash",
     invisible: true
   }
 ];

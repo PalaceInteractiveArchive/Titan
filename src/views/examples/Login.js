@@ -1,20 +1,3 @@
-/*!
-
-=========================================================
-* Argon Dashboard React - v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 import axios from 'axios';
 import Cookies from 'universal-cookie';
@@ -62,9 +45,9 @@ class Login extends React.Component {
               clearInterval(waitClose);
               if (logStatus === "success") {
                 cookies.set('accessToken', accessToken, {path: '/', maxAge: 1800});
-                cookies.set('user', user, {path: '/', maxAge: 1800})
-                cookies.set('otherStuff', otherInfo, {path: '/', maxAge: 1800})
-                window.location.replace('/')
+                cookies.set('user', user, {path: '/', maxAge: 1800});
+                cookies.set('otherStuff', otherInfo, {path: '/', maxAge: 1800});
+                window.location.replace('/');
               } else {
                 alert("Failed logon, refreshing page");
                 window.location.reload();
@@ -92,7 +75,7 @@ class Login extends React.Component {
                   <span className="btn-inner--icon">
                     <img
                       alt="..."
-                      src={require("assets/img/icons/common/pn_icon.png")}
+                      src={require("assets/img/icons/common/pn_icon.png").default}
                     />
                   </span>
                   <span className="btn-inner--text">Palace Forums</span>
