@@ -22,7 +22,7 @@ class Login extends React.Component {
   }
   
   getLoginWindow() {
-    axios.get('/titan/auth/login')
+    axios.get('https://internal-api.palace.network/titan/auth/login')
     .then((response) => {
     console.log(response.data)
     var win = window.open(
