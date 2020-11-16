@@ -18,11 +18,6 @@
 import React from "react";
 // node.js library that concatenates classes (strings)
 //import Cookies from 'universal-cookie';
-import classnames from "classnames";
-// javascipt plugin for creating charts
-import Chart from "chart.js";
-// react plugin used to create charts
-import { Line, Bar } from "react-chartjs-2";
 // reactstrap components
 import {
   Alert,

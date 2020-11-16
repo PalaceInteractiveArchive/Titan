@@ -17,29 +17,47 @@
 */
 import React from "react";
 import Axios from "axios";
+import Cookies from "universal-cookie";
 
 // reactstrap components
 import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
+
+const cookies = new Cookies();
+
 
 class Header extends React.Component {
   state = {
     titanUsers: 0,
     totalPlayers: 0,
-    totalHelps: 0
+    totalHelps: 0,
+    onlinePlayers: 0
   }
 
   componentDidMount() {
-    Axios.get(`https://internal-api.palace.network/titan/stats/titanUsers`)
+    Axios.post('https://internal-api.palace.network/titan/stats/titanUsers', {
+      accessToken: cookies.get('accessToken'),
+      user: cookies.get('user')
+    })
     .then(res => {
       this.setState({ titanUsers: res.data });
-    });
-    Axios.get(`https://internal-api.palace.network/titan/stats/totalUsers`)
+    });    
+    Axios.post(`https://internal-api.palace.network/titan/stats/totalUsers`, {
+      accessToken: cookies.get('accessToken'),
+      user: cookies.get('user')
+    })
     .then(res => {
       this.setState({ totalPlayers: res.data });
     });
-    Axios.get(`https://internal-api.palace.network/titan/stats/totalHelps`)
+    Axios.post(`https://internal-api.palace.network/titan/stats/totalHelps`, {
+      accessToken: cookies.get('accessToken'),
+      user: cookies.get('user')
+    })
     .then(res => {
       this.setState({ totalHelps: res.data });
+    });
+    Axios.get(`https://internal-api.palace.network/minecraft/server/online`)
+    .then(res => {
+      this.setState({ onlinePlayers: res.data.players });
     });
   } 
 
@@ -109,7 +127,7 @@ class Header extends React.Component {
                             tag="h5"
                             className="text-uppercase text-muted mb-0"
                           >
-                            Help Me's
+                            Help Mes
                           </CardTitle>
                           <span className="h2 font-weight-bold mb-0">
                             {this.state.totalHelps.toLocaleString()}
@@ -133,15 +151,15 @@ class Header extends React.Component {
                             tag="h5"
                             className="text-uppercase text-muted mb-0"
                           >
-                            TBA
+                            Online Players
                           </CardTitle>
                           <span className="h2 font-weight-bold mb-0">
-                            n/a
+                            {this.state.onlinePlayers.toLocaleString()}
                           </span>
                         </div>
                         <Col className="col-auto">
                           <div className="icon icon-shape bg-info text-white rounded-circle shadow">
-                            <i className="fas fa-percent" />
+                            <i className="ni ni-laptop" />
                           </div>
                         </Col>
                       </Row>
