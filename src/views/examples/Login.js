@@ -44,9 +44,9 @@ class Login extends React.Component {
           if (win.closed) {
               clearInterval(waitClose);
               if (logStatus === "success") {
-                cookies.set('accessToken', accessToken, {path: '/', maxAge: 1800});
-                cookies.set('user', user, {path: '/', maxAge: 1800});
-                cookies.set('otherStuff', otherInfo, {path: '/', maxAge: 1800});
+                cookies.set('accessToken', accessToken, {path: '/', maxAge: 3600});
+                cookies.set('user', user, {path: '/', maxAge: 3600});
+                cookies.set('otherStuff', otherInfo, {path: '/', maxAge: 3600});
                 window.location.replace('/');
               } else {
                 alert("Failed logon, refreshing page");
