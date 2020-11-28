@@ -332,7 +332,7 @@ class Profile extends React.Component {
                               <ModerationTabs uuid={this.state.userInfo.game.uuid} />
                             </TabPane>
                             <TabPane tabId="tabs2">
-                              <p>Chat will return soon.</p>
+                              <p></p>
                             </TabPane>
                           </TabContent>
                         </CardBody>
