@@ -101,7 +101,7 @@ class ChatTab extends React.Component {
                     className={classnames("rounded-circle", {
                         active: this.state.circledNavPills === 1
                     })}
-                    onClick={e => this.newSetOfChat(e, true)}
+                    onClick={e => this.newSetOfChat(e, false)}
                     href="#pablo"
                     role="tab"
                     >
