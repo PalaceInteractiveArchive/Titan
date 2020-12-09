@@ -22,7 +22,9 @@ import PublicProfile from "views/examples/PublicProfile";
 import Login from "views/examples/Login.js";
 import Logout from "views/examples/Logout";
 import SupportCentre from "views/examples/SupportCentre";
-import SupportAdmin from "views/examples/ManagerAbsence"
+import SupportAdmin from "views/examples/ManagerAbsence";
+import UserChat from "views/examples/UserChat";
+import AdminArea from "views/examples/AdminArea";
 // import Tables from "views/examples/Tables.js";
 // import Icons from "views/examples/Icons.js";
 
@@ -94,12 +96,41 @@ var routes = [
     layout: "/dash"
   },
   {
+    divide: true,
+    name: "Admin Area"
+  },
+  {
     path: "/support-admin",
     name: "Support Admin",
     icon: "ni ni-app text-info",
     component: SupportAdmin,
     layout: "/dash",
-    invisible: true
+    restricted: {
+      type: 1,
+      groups: [8, 33, 4]
+    }
+  },
+  {
+    path: "/userChat",
+    name: "User Chat",
+    icon: "ni ni-chat-round",
+    component: UserChat,
+    layout: "/dash",
+    restricted: {
+      type: 2,
+      groups: [8, 33, 4]
+    }
+  },
+  {
+    path: "/admin",
+    name: "Admin Zone",
+    icon: "ni ni-settings",
+    component: AdminArea,
+    layout: "/dash",
+    restricted: {
+      type: -100,
+      groups: [8, 33, 4]
+    }
   }
 ];
 export default routes;

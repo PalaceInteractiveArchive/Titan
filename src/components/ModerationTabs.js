@@ -46,7 +46,6 @@ class ModerationTabs extends React.Component {
         window.location.replace('/dash')
       } else {
         this.setState({warnings: res1.data.warnings, mutes: res1.data.mutes, kicks: res1.data.kicks, bans: res1.data.bans})
-        console.log(res1.data.warnings);
       }
     })
   }
@@ -54,7 +53,6 @@ class ModerationTabs extends React.Component {
     getUsernameFromUUID = ( uuid ) => {
     Axios.get(`https://api.ashcon.app/mojang/v2/user/${uuid}`)
     .then((res) => {
-        console.log(res.data.username)
         return ("res.data.username");
     })
 }

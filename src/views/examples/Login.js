@@ -24,7 +24,6 @@ class Login extends React.Component {
   getLoginWindow() {
     axios.get('https://internal-api.palace.network/titan/auth/login')
     .then((response) => {
-    console.log(response.data)
     var win = window.open(
       response.data, 
       "Login", "height=700,width=600,resizable=no");
@@ -32,13 +31,14 @@ class Login extends React.Component {
       let user = {};
       let otherInfo = {};
       let accessToken = "";
+      let sGroups;
       window.addEventListener('message',function(event) {
         if(event.origin !== 'https://internal-api.palace.network') return;
-          console.log(event.data);
           logStatus = event.data.status;
           user = event.data.user;
           accessToken = event.data.accessToken;
           otherInfo = event.data.otherStuff;
+          sGroups = event.data.sGroups;
         },false);
         var waitClose = setInterval(function() {
           if (win.closed) {
@@ -47,6 +47,7 @@ class Login extends React.Component {
                 cookies.set('accessToken', accessToken, {path: '/', maxAge: 3600});
                 cookies.set('user', user, {path: '/', maxAge: 3600});
                 cookies.set('otherStuff', otherInfo, {path: '/', maxAge: 3600});
+                cookies.set('sGroups', sGroups, {path: '/', maxAge: 3600})
                 window.location.replace('/');
               } else {
                 alert("Failed logon, refreshing page");
