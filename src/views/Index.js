@@ -147,7 +147,7 @@ class Index extends React.Component {
                           id={name}
                           key={name}
                           className="avatar rounded-circle mr-3"
-                          src={`https://minotar.net/avatar/${name}`}
+                          src={`https://mc-heads.net/avatar/${name}`}
                           />
                           <UncontrolledTooltip
                             delay={0}

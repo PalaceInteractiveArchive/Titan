@@ -104,7 +104,7 @@ class Profile extends React.Component {
                           <a href="#a" onClick={e => e.preventDefault()}>
                             <img
                               alt="..."
-                              src={`https://minotar.net/avatar/${this.state.userInfo.game.uuid}`}
+                              src={`https://mc-heads.net/avatar/${this.state.userInfo.game.uuid}`}
                             />
                           </a>
                         </div>

@@ -149,7 +149,7 @@ class AdminArea extends React.Component {
                                 >
                                     <img
                                     alt="..."
-                                    src={`https://minotar.net/avatar/${data.name}`}
+                                    src={`https://mc-heads.net/avatar/${data.name}`}
                                     />
                                 </a>
                                 <Media>

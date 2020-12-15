@@ -157,7 +157,7 @@ class ModerationTabs extends React.Component {
                                 >
                                     <img
                                     alt="..."
-                                    src={`https://minotar.net/avatar/${warn.source}`}
+                                    src={`https://mc-heads.net/avatar/${warn.source}`}
                                     />
                                 </a>
                                 <Media>
@@ -209,7 +209,7 @@ class ModerationTabs extends React.Component {
                                 >
                                     <img
                                     alt="..."
-                                    src={`https://minotar.net/avatar/${mute.source}`}
+                                    src={`https://mc-heads.net/avatar/${mute.source}`}
                                     />
                                 </a>
                                 <Media>
@@ -253,7 +253,7 @@ class ModerationTabs extends React.Component {
                                     >
                                         <img
                                         alt="..."
-                                        src={`https://minotar.net/avatar/${kick.source}`}
+                                        src={`https://mc-heads.net/avatar/${kick.source}`}
                                         />
                                     </a>
                                     <Media>
@@ -309,7 +309,7 @@ class ModerationTabs extends React.Component {
                                     >
                                         <img
                                         alt="..."
-                                        src={`https://minotar.net/avatar/${ban.source}`}
+                                        src={`https://mc-heads.net/avatar/${ban.source}`}
                                         />
                                     </a>
                                     <Media>
