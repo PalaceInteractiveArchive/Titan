@@ -26,18 +26,23 @@ class ChatTab extends React.Component {
       [state]: index
     });
   };
+  getInitial = () => {
+    Axios.post(`https://internal-api.palace.network/titan/lookup/chat`, {
+        accessToken: cookies.get('accessToken'),
+        user: cookies.get('user'),
+        uuid: this.props.uuid,
+        page: 1
+      })
+      .then(res1 => {
+          this.setState({chat: res1.data.chat, loading: false})
+      })
+      .catch(err => {
+          console.error(err)
+      })
+  }
 
   componentDidMount() {
-    Axios.post(`https://internal-api.palace.network/titan/lookup/chat`, {
-      accessToken: cookies.get('accessToken'),
-      user: cookies.get('user'),
-      uuid: this.props.uuid,
-      page: 1
-    })
-    .then(res1 => {
-        this.setState({chat: res1.data.chat, loading: false})
-        console.log(res1.data.chat);
-    })
+    this.getInitial();
   }
 
   newSetOfChat( e, direction ) {
@@ -54,7 +59,6 @@ class ChatTab extends React.Component {
         })
         .then(res1 => {
                 this.setState({chat: res1.data.chat, loading: false})
-                console.log(res1.data.chat);
         })
     } else {
         let tempPage = this.state.page;
@@ -63,7 +67,6 @@ class ChatTab extends React.Component {
         } else {
 
         }
-        console.log(tempPage)
         this.setState({ loading: true, page: tempPage, chat: []});
         Axios.post(`https://internal-api.palace.network/titan/lookup/chat`, {
             accessToken: cookies.get('accessToken'),
@@ -73,7 +76,6 @@ class ChatTab extends React.Component {
         })
         .then(res1 => {
                 this.setState({chat: res1.data.chat, loading: false})
-                console.log(res1.data.chat);
         })
     }
   }

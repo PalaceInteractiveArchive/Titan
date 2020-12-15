@@ -38,7 +38,7 @@ import {
 // core components
 import UserHeader from "components/Headers/UserHeader.js";
 import ModerationTabs from "components/ModerationTabs";
-import ChatTab from "components/ChatHistory";
+//import ChatTab from "components/ChatHistory";
 import Cookies from "universal-cookie";
 import Axios from "axios";
 
@@ -75,7 +75,6 @@ class Profile extends React.Component {
         window.location.replace('/dash')
       } else {
         this.setState({userInfo: res1.data})
-        console.log(res1.data);
         Axios.post(`https://internal-api.palace.network/titan/stats/getFriends/${res1.data.game.uuid}`, {
           accessToken: cookies.get('accessToken'),
           user: cookies.get('user')
@@ -105,7 +104,7 @@ class Profile extends React.Component {
                           <a href="#a" onClick={e => e.preventDefault()}>
                             <img
                               alt="..."
-                              src={`https://minotar.net/avatar/${this.state.userInfo.game.uuid}`}
+                              src={`https://mc-heads.net/avatar/${this.state.userInfo.game.uuid}`}
                             />
                           </a>
                         </div>
@@ -309,20 +308,6 @@ class Profile extends React.Component {
                               Moderation
                             </NavLink>
                           </NavItem>
-                          <NavItem>
-                            <NavLink
-                              aria-selected={this.state.tabs === 2}
-                              className={classnames("mb-sm-3 mb-md-0", {
-                                active: this.state.tabs === 2
-                              })}
-                              onClick={e => this.toggleNavs(e, "tabs", 2)}
-                              href="#"
-                              role="tab"
-                            >
-                              <i className="ni ni-bell-55 mr-2" />
-                              Chat History
-                            </NavLink>
-                          </NavItem>
                         </Nav>
                       </div>
                       <Card className="shadow">
@@ -330,9 +315,6 @@ class Profile extends React.Component {
                           <TabContent activeTab={"tabs" + this.state.tabs}>
                             <TabPane tabId="tabs1">
                               <ModerationTabs uuid={this.state.userInfo.game.uuid} />
-                            </TabPane>
-                            <TabPane tabId="tabs2">
-                              <p></p>
                             </TabPane>
                           </TabContent>
                         </CardBody>

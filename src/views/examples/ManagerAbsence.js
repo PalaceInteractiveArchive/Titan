@@ -27,18 +27,16 @@ class SupportAdmin extends React.Component {
     componentDidMount() {
         Axios.post(`https://internal-api.palace.network/titan/support/currentAbsence`, {
             accessToken: cookies.get('accessToken'),
-            user: cookies.get('user')
+            user: cookies.get('user'),
+            routeType: 1
         })
         .then(res => {
-          console.log("current")
-          console.log(res)
             Axios.post(`https://internal-api.palace.network/titan/support/allAbsence`, {
               accessToken: cookies.get('accessToken'),
-              user: cookies.get('user')
+              user: cookies.get('user'),
+              routeType: 1
             })
             .then(res1 => {
-              console.log("all")
-              console.log(res1.data)
                 this.setState({current: res.data, all: res1.data})
             })
         })
@@ -87,9 +85,9 @@ class SupportAdmin extends React.Component {
                 <CardHeader className=" bg-transparent border-0">
                   <center>
                   <h2 className="text-black mb-1">{curr.name}</h2>
-                  <h4 className="text-primary mb-1">{moment(curr.startDate * 1000).format('MMMM Do YYYY, h:mm:ss a')}</h4>
+                  <h4 className="text-primary mb-1">{moment(curr.startDate * 1000).format('MM/DD/YYYY')}</h4>
                   <h4 className="text-black mb-1">Until</h4>
-                  <h4 className="text-primary mb-1">{moment(curr.endDate * 1000).format('MMMM Do YYYY, h:mm:ss a')}</h4>
+                  <h4 className="text-primary mb-1">{moment(curr.endDate * 1000).format('MM/DD/YYYY')}</h4>
                   <h4 className="text-black">Reason: {curr.reason}</h4>
                   </center>
                 </CardHeader>
@@ -115,9 +113,9 @@ class SupportAdmin extends React.Component {
                 <CardHeader className=" bg-transparent border-0">
                   <center>
                   <h2 className="text-black mb-1">{all.name}</h2>
-                  <h4 className="text-primary mb-1">{moment(all.startDate * 1000).format('MMMM Do YYYY, h:mm:ss a')}</h4>
+                  <h4 className="text-primary mb-1">{moment(all.startDate * 1000).format('MM/DD/YYYY')}</h4>
                   <h4 className="text-black mb-1">Until</h4>
-                  <h4 className="text-primary mb-1">{moment(all.endDate * 1000).format('MMMM Do YYYY, h:mm:ss a')}</h4>
+                  <h4 className="text-primary mb-1">{moment(all.endDate * 1000).format('MM/DD/YYYY')}</h4>
                   <h4 className="text-black">Reason: {all.reason}</h4>
                   </center>
                 </CardHeader>

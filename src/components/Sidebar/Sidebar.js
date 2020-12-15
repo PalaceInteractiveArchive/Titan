@@ -90,6 +90,41 @@ class Sidebar extends React.Component {
   createLinks = routes => {
     return routes.map((prop, key) => {
       if(prop.invisible) return null;
+      if(prop.restricted) {
+        let sGroupCheck = false;
+        let secondaries = cookies.get("sGroups")
+        secondaries.forEach(element => {
+          if (prop.restricted.groups.includes(element)) {
+            sGroupCheck = true;
+          }
+        });
+        if (cookies.get("user").allowedRoutes.includes(prop.restricted.type) | prop.restricted.groups.includes(cookies.get("user").pgroup) | sGroupCheck) {
+          return (
+            <NavItem key={key}>
+              <NavLink
+                to={prop.layout + prop.path}
+                tag={NavLinkRRD}
+                onClick={this.closeCollapse}
+                activeClassName="active"
+              >
+                <i className={prop.icon} />
+                {prop.name}
+              </NavLink>
+            </NavItem>
+          );
+        } else {
+          return null;
+        }
+      }
+      if (prop.divide) {
+        return (
+          <NavItem>
+            <hr className="my-3" style={{maxWidth: "202px"}}/>
+            <center>
+              <h6 className="navbar-heading text-muted">{prop.name}</h6>
+            </center>
+          </NavItem>)
+      }
       return (
         <NavItem key={key}>
           <NavLink
@@ -240,7 +275,9 @@ class Sidebar extends React.Component {
             {/* Divider */}
             <hr className="my-3" />
             {/* Heading */}
+            <center>
             <h6 className="navbar-heading text-muted">Titan</h6>
+            </center>
         </Collapse>
         </Container>
       </Navbar>

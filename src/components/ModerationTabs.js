@@ -46,7 +46,6 @@ class ModerationTabs extends React.Component {
         window.location.replace('/dash')
       } else {
         this.setState({warnings: res1.data.warnings, mutes: res1.data.mutes, kicks: res1.data.kicks, bans: res1.data.bans})
-        console.log(res1.data.warnings);
       }
     })
   }
@@ -54,7 +53,6 @@ class ModerationTabs extends React.Component {
     getUsernameFromUUID = ( uuid ) => {
     Axios.get(`https://api.ashcon.app/mojang/v2/user/${uuid}`)
     .then((res) => {
-        console.log(res.data.username)
         return ("res.data.username");
     })
 }
@@ -159,7 +157,7 @@ class ModerationTabs extends React.Component {
                                 >
                                     <img
                                     alt="..."
-                                    src={`https://minotar.net/avatar/${warn.source}`}
+                                    src={`https://mc-heads.net/avatar/${warn.source}`}
                                     />
                                 </a>
                                 <Media>
@@ -211,7 +209,7 @@ class ModerationTabs extends React.Component {
                                 >
                                     <img
                                     alt="..."
-                                    src={`https://minotar.net/avatar/${mute.source}`}
+                                    src={`https://mc-heads.net/avatar/${mute.source}`}
                                     />
                                 </a>
                                 <Media>
@@ -255,7 +253,7 @@ class ModerationTabs extends React.Component {
                                     >
                                         <img
                                         alt="..."
-                                        src={`https://minotar.net/avatar/${kick.source}`}
+                                        src={`https://mc-heads.net/avatar/${kick.source}`}
                                         />
                                     </a>
                                     <Media>
@@ -311,7 +309,7 @@ class ModerationTabs extends React.Component {
                                     >
                                         <img
                                         alt="..."
-                                        src={`https://minotar.net/avatar/${ban.source}`}
+                                        src={`https://mc-heads.net/avatar/${ban.source}`}
                                         />
                                     </a>
                                     <Media>
