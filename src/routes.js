@@ -25,6 +25,7 @@ import SupportCentre from "views/examples/SupportCentre";
 import SupportAdmin from "views/examples/ManagerAbsence";
 import UserChat from "views/examples/UserChat";
 import AdminArea from "views/examples/AdminArea";
+import AppHome from "views/appcentre/AppHome"; 
 // import Tables from "views/examples/Tables.js";
 // import Icons from "views/examples/Icons.js";
 
@@ -113,7 +114,7 @@ var routes = [
   {
     path: "/userChat",
     name: "User Chat",
-    icon: "ni ni-chat-round",
+    icon: "ni ni-chat-round text-warning",
     component: UserChat,
     layout: "/dash",
     restricted: {
@@ -124,8 +125,19 @@ var routes = [
   {
     path: "/admin",
     name: "Admin Zone",
-    icon: "ni ni-settings",
+    icon: "ni ni-settings text-primary",
     component: AdminArea,
+    layout: "/dash",
+    restricted: {
+      type: -100,
+      groups: [8, 33, 4]
+    },
+  },
+  {
+    path: "/applications",
+    name: "Application Centre",
+    icon: "fa fa-folder-open text-danger",
+    component: AppHome,
     layout: "/dash",
     restricted: {
       type: -100,
