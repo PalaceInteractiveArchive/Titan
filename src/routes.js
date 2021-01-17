@@ -25,7 +25,11 @@ import SupportCentre from "views/examples/SupportCentre";
 import SupportAdmin from "views/examples/ManagerAbsence";
 import UserChat from "views/examples/UserChat";
 import AdminArea from "views/examples/AdminArea";
-import AppHome from "views/appcentre/AppHome"; 
+import AppHome from "views/appcentre/AppHome";
+import Applicants from "views/appcentre/Applicants";
+import RestrictPage from "views/appcentre/RestrictPage";
+import AppEditor from "views/appcentre/AppEditor";
+import AppEditList from "views/appcentre/EditPage"
 // import Tables from "views/examples/Tables.js";
 // import Icons from "views/examples/Icons.js";
 
@@ -139,6 +143,54 @@ var routes = [
     icon: "fa fa-folder-open text-danger",
     component: AppHome,
     layout: "/dash",
+    restricted: {
+      type: -100,
+      groups: [8, 33, 4, 7]
+    }
+  },
+  {
+    path: "/appView",
+    name: "Current Applicants",
+    icon: "fa fa-folder-open text-danger",
+    component: Applicants,
+    layout: "/dash",
+    invisible: true,
+    restricted: {
+      type: -100,
+      groups: [8, 33, 4, 7]
+    }
+  },
+  {
+    path: "/appRestrict",
+    name: "Restrict Applications",
+    icon: "fa fa-folder-open text-danger",
+    component: RestrictPage,
+    layout: "/dash",
+    invisible: true,
+    restricted: {
+      type: -100,
+      groups: [8, 33, 4]
+    }
+  },
+  {
+    path: "/appEdit/:id",
+    name: "Edit Application",
+    icon: "fa fa-folder-open text-danger",
+    component: AppEditor,
+    layout: "/dash",
+    invisible: true,
+    restricted: {
+      type: -100,
+      groups: [8, 33, 4]
+    }
+  },
+  {
+    path: "/appEdit",
+    name: "Edit Applications",
+    icon: "fa fa-folder-open text-danger",
+    component: AppEditList,
+    layout: "/dash",
+    invisible: true,
     restricted: {
       type: -100,
       groups: [8, 33, 4]

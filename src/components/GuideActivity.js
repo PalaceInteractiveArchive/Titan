@@ -29,15 +29,31 @@ class GuideActivity extends React.Component {
   }
 
   render() {
-    return (
-      <>
-        <h2>Guide Activity</h2>
-        <span>Last Day: {this.state.day}</span><br />
-        <span>Last Week: {this.state.week}</span><br />
-        <span>Last Month: {this.state.month}</span><br />
-        <span>All Time: {this.state.total}</span><br />
-      </>
-    );
+    var restricted = [8, 33, 4, 7]
+    let sGroupCheck = false;
+        let secondaries = cookies.get("sGroups")
+        secondaries.forEach(element => {
+          if (restricted.includes(element)) {
+            sGroupCheck = true;
+          }
+        });
+    if (restricted.includes(cookies.get("user").pgroup) | sGroupCheck) {
+      return (
+        <>
+          <h2>Guide Activity</h2>
+          <span>Last Day: {this.state.day}</span><br />
+          <span>Last Week: {this.state.week}</span><br />
+          <span>Last Month: {this.state.month}</span><br />
+          <span>All Time: {this.state.total}</span><br />
+        </>
+      );
+    } else {
+      return (
+        <>
+          You do not have permission to view this.
+        </>
+      );
+    }
   }
 }
 
