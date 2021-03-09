@@ -22,7 +22,7 @@ class Login extends React.Component {
   }
   
   getLoginWindow() {
-    axios.get('https://internal-api.palace.network/titan/auth/login')
+    axios.get(`${process.env.REACT_APP_API_URL}/titan/auth/login`)
     .then((response) => {
     var win = window.open(
       response.data, 
@@ -33,7 +33,7 @@ class Login extends React.Component {
       let accessToken = "";
       let sGroups;
       window.addEventListener('message',function(event) {
-        if(event.origin !== 'https://internal-api.palace.network') return;
+        if(event.origin !==  process.env.REACT_APP_API_URL) return;
           logStatus = event.data.status;
           user = event.data.user;
           accessToken = event.data.accessToken;

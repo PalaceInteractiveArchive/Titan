@@ -22,7 +22,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 
         const fetchInfo= async() => {
             if (cookies.get('accessToken') !== undefined) {
-                axios.post('https://internal-api.palace.network/titan/auth/verify', {
+                axios.post(`${process.env.REACT_APP_API_URL}/titan/auth/verify`, {
                     accessToken: cookies.get('accessToken'),
                     user: cookies.get('user')
                 })

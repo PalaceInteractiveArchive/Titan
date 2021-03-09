@@ -25,6 +25,18 @@ import SupportCentre from "views/examples/SupportCentre";
 import SupportAdmin from "views/examples/ManagerAbsence";
 import UserChat from "views/examples/UserChat";
 import AdminArea from "views/examples/AdminArea";
+import AppHome from "views/appcentre/AppHome";
+import Applicants from "views/appcentre/Applicants";
+import RestrictPage from "views/appcentre/RestrictPage";
+import AppEditor from "views/appcentre/AppEditor";
+import AppEditList from "views/appcentre/EditPage"
+import AppPublicHome from "views/appcentrepublic/index";
+import AppPublicLogin from "views/appcentrepublic/login";
+import AppPublicApply from "views/appcentrepublic/apply";
+import MyApplications from "views/appcentrepublic/MyApplications";
+import GuestSingleApplication from "views/appcentrepublic/SingleApplication";
+import AppPublicSubmitted from "views/appcentrepublic/SubmittedPage";
+import SingleApplicant from "views/appcentre/SingleApplicant";
 // import Tables from "views/examples/Tables.js";
 // import Icons from "views/examples/Icons.js";
 
@@ -97,7 +109,8 @@ var routes = [
   },
   {
     divide: true,
-    name: "Admin Area"
+    name: "Admin Area",
+    layout: "/dash"
   },
   {
     path: "/support-admin",
@@ -113,7 +126,7 @@ var routes = [
   {
     path: "/userChat",
     name: "User Chat",
-    icon: "ni ni-chat-round",
+    icon: "ni ni-chat-round text-warning",
     component: UserChat,
     layout: "/dash",
     restricted: {
@@ -124,13 +137,130 @@ var routes = [
   {
     path: "/admin",
     name: "Admin Zone",
-    icon: "ni ni-settings",
+    icon: "ni ni-settings text-primary",
     component: AdminArea,
     layout: "/dash",
     restricted: {
       type: -100,
       groups: [8, 33, 4]
+    },
+  },
+  {
+    path: "/applications",
+    name: "Application Centre",
+    icon: "fa fa-folder-open text-danger",
+    component: AppHome,
+    layout: "/dash",
+    restricted: {
+      type: -100,
+      groups: [8, 33, 4, 7]
     }
+  },
+  {
+    path: "/appView/:id",
+    name: "Viewing Application",
+    icon: "fa fa-folder-open text-danger",
+    component: SingleApplicant,
+    layout: "/dash",
+    invisible: true,
+    restricted: {
+      type: -100,
+      groups: [8, 33, 4, 7]
+    }
+  },
+  {
+    path: "/appView",
+    name: "Current Applicants",
+    icon: "fa fa-folder-open text-danger",
+    component: Applicants,
+    layout: "/dash",
+    invisible: true,
+    restricted: {
+      type: -100,
+      groups: [8, 33, 4, 7]
+    }
+  },
+  {
+    path: "/appRestrict",
+    name: "Restrict Applications",
+    icon: "fa fa-folder-open text-danger",
+    component: RestrictPage,
+    layout: "/dash",
+    invisible: true,
+    restricted: {
+      type: -100,
+      groups: [8, 33, 4]
+    }
+  },
+  {
+    path: "/appEdit/:id",
+    name: "Edit Application",
+    icon: "fa fa-folder-open text-danger",
+    component: AppEditor,
+    layout: "/dash",
+    invisible: true,
+    restricted: {
+      type: -100,
+      groups: [8, 33, 4]
+    }
+  },
+  {
+    path: "/appEdit",
+    name: "Edit Applications",
+    icon: "fa fa-folder-open text-danger",
+    component: AppEditList,
+    layout: "/dash",
+    invisible: true,
+    restricted: {
+      type: -100,
+      groups: [8, 33, 4]
+    }
+  },
+  {
+    path: "/home",
+    name: "Home",
+    icon: "fa fa-home text-primary",
+    component: AppPublicHome,
+    layout: "/apply",
+  },
+  {
+    path: "/login/:id/:uuid",
+    name: "Application Login",
+    icon: "fa fa-folder-open text-danger",
+    component: AppPublicLogin,
+    layout: "/apply",
+    invisible: true
+  },
+  {
+    path: "/application/:id",
+    name: "Application Form",
+    icon: "fa fa-folder-open text-danger",
+    component: AppPublicApply,
+    layout: "/apply",
+    invisible: true
+  },
+  {
+    path: "/submitted/:response",
+    name: "Thank you!",
+    icon: "fa fa-folder-open text-danger",
+    component: AppPublicSubmitted,
+    layout: "/apply",
+    invisible: true
+  },
+  {
+    path: "/applications",
+    name: "Your Applications",
+    icon: "fa fa-folder-open",
+    component: MyApplications,
+    layout: "/apply",
+  },
+  {
+    path: "/view/:id",
+    name: "Your Application",
+    icon: "fa fa-folder-open",
+    component: GuestSingleApplication,
+    layout: "/apply",
+    invisible: true
   }
 ];
 export default routes;

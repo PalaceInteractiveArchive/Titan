@@ -25,13 +25,13 @@ class SupportAdmin extends React.Component {
     }
 
     componentDidMount() {
-        Axios.post(`https://internal-api.palace.network/titan/support/currentAbsence`, {
+        Axios.post(`${process.env.REACT_APP_API_URL}/titan/support/currentAbsence`, {
             accessToken: cookies.get('accessToken'),
             user: cookies.get('user'),
             routeType: 1
         })
         .then(res => {
-            Axios.post(`https://internal-api.palace.network/titan/support/allAbsence`, {
+            Axios.post(`${process.env.REACT_APP_API_URL}/titan/support/allAbsence`, {
               accessToken: cookies.get('accessToken'),
               user: cookies.get('user'),
               routeType: 1

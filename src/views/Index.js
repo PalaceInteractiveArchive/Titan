@@ -55,14 +55,14 @@ class Index extends React.Component {
     .then(res => {
       this.setState({update: res.data})
     })
-    Axios.post(`https://internal-api.palace.network/titan/stats/onlineStaff/`, {
+    Axios.post(`${process.env.REACT_APP_API_URL}/titan/stats/onlineStaff/`, {
       accessToken: cookies.get('accessToken'),
       user: cookies.get('user')
     })
     .then(res => {
       this.setState({onlineStaff: res.data})
     })
-    Axios.post(`https://internal-api.palace.network/titan/alerts/getAll/`, {
+    Axios.post(`${process.env.REACT_APP_API_URL}/titan/alerts/getAll/`, {
       accessToken: cookies.get('accessToken'),
       user: cookies.get('user')
     })
@@ -75,7 +75,7 @@ class Index extends React.Component {
 
   runNotifs() {
     if (this.state.alerts.length !== 0) {
-      Axios.post(`https://internal-api.palace.network/titan/alerts/get/${this.state.alerts[0]}`, {
+      Axios.post(`${process.env.REACT_APP_API_URL}/titan/alerts/get/${this.state.alerts[0]}`, {
         accessToken: cookies.get('accessToken'),
         user: cookies.get('user')
       })
@@ -87,7 +87,7 @@ class Index extends React.Component {
   }
 
   removeHandler() {
-    Axios.post(`https://internal-api.palace.network/titan/alerts/read/${this.state.alerts[0]}`, {
+    Axios.post(`${process.env.REACT_APP_API_URL}/titan/alerts/read/${this.state.alerts[0]}`, {
         accessToken: cookies.get('accessToken'),
         user: cookies.get('user')
       })

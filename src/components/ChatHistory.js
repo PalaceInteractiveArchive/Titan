@@ -27,7 +27,7 @@ class ChatTab extends React.Component {
     });
   };
   getInitial = () => {
-    Axios.post(`https://internal-api.palace.network/titan/lookup/chat`, {
+    Axios.post(`${process.env.REACT_APP_API_URL}/titan/lookup/chat`, {
         accessToken: cookies.get('accessToken'),
         user: cookies.get('user'),
         uuid: this.props.uuid,
@@ -51,7 +51,7 @@ class ChatTab extends React.Component {
         let tempPage = this.state.page;
         tempPage++;
         this.setState({ loading: true, page: tempPage, chat: []});
-        Axios.post(`https://internal-api.palace.network/titan/lookup/chat`, {
+        Axios.post(`${process.env.REACT_APP_API_URL}/titan/lookup/chat`, {
             accessToken: cookies.get('accessToken'),
             user: cookies.get('user'),
             uuid: this.props.uuid,
@@ -68,7 +68,7 @@ class ChatTab extends React.Component {
 
         }
         this.setState({ loading: true, page: tempPage, chat: []});
-        Axios.post(`https://internal-api.palace.network/titan/lookup/chat`, {
+        Axios.post(`${process.env.REACT_APP_API_URL}/titan/lookup/chat`, {
             accessToken: cookies.get('accessToken'),
             user: cookies.get('user'),
             uuid: this.props.uuid,

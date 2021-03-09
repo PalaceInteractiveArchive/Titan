@@ -3,9 +3,8 @@ import { Route, Switch, Redirect } from "react-router-dom";
 // reactstrap components
 import { Container } from "reactstrap";
 // core components
-import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import AdminFooter from "components/Footers/AdminFooter.js";
-import Sidebar from "components/Sidebar/Sidebar.js";
+import Sidebar from "components/Sidebar/SidebarApply.js";
 
 import routes from "routes.js";
 
@@ -17,7 +16,7 @@ class Admin extends React.Component {
   }
   getRoutes = routes => {
     return routes.map((prop, key) => {
-      if (prop.layout === "/dash") {
+      if (prop.layout === "/apply") {
         return (
           <Route
             path={prop.layout + prop.path}
@@ -30,15 +29,15 @@ class Admin extends React.Component {
       }
     });
   };
-  getDashRoutes = routes => {
-    let found = [];
-    routes.forEach(element => {
-        if (element.layout === "/dash") {
-          found.push(element);
-        }
-    });
-    return found;
-}
+  getApplyRoutes = routes => {
+      let found = [];
+      routes.forEach(element => {
+          if (element.layout === "/apply") {
+            found.push(element);
+          }
+      });
+      return found;
+  }
   getBrandText = path => {
     for (let i = 0; i < routes.length; i++) {
       if (
@@ -49,28 +48,24 @@ class Admin extends React.Component {
         return routes[i].name;
       }
     }
-    return "Brand";
+    return "Application Centre";
   };
   render() {
     return (
       <>
         <Sidebar
           {...this.props}
-          routes={this.getDashRoutes(routes)}
+          routes={this.getApplyRoutes(routes)}
           logo={{
-            innerLink: "/dash/index",
+            innerLink: "/apply/home",
             imgSrc: require("assets/img/brand/argon-react.png"),
             imgAlt: "..."
           }}
         />
         <div className="main-content" ref="mainContent">
-          <AdminNavbar
-            {...this.props}
-            brandText={this.getBrandText(this.props.location.pathname)}
-          />
           <Switch>
             {this.getRoutes(routes)}
-            <Redirect from="*" to="/dash/index" />
+            <Redirect from="*" to="/apply/home" />
           </Switch>
           <Container fluid>
             <AdminFooter />

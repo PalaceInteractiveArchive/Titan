@@ -35,7 +35,7 @@ class UserChat extends React.Component {
 
     usernameToUUID() {
         this.setState({isEntered: false, isDisabled: true});
-        Axios.post(`https://internal-api.palace.network/titan/lookup/general`, {
+        Axios.post(`${process.env.REACT_APP_API_URL}/titan/lookup/general`, {
             accessToken: cookies.get('accessToken'),
             user: cookies.get('user'),
             username: this.state.userChange
