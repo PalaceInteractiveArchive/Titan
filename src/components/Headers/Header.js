@@ -34,28 +34,28 @@ class Header extends React.Component {
   }
 
   componentDidMount() {
-    Axios.post('https://internal-api.palace.network/titan/stats/titanUsers', {
+    Axios.post(`${process.env.REACT_APP_API_URL}/titan/stats/titanUsers`, {
       accessToken: cookies.get('accessToken'),
       user: cookies.get('user')
     })
     .then(res => {
       this.setState({ titanUsers: res.data });
     });    
-    Axios.post(`https://internal-api.palace.network/titan/stats/totalUsers`, {
+    Axios.post(`${process.env.REACT_APP_API_URL}/titan/stats/totalUsers`, {
       accessToken: cookies.get('accessToken'),
       user: cookies.get('user')
     })
     .then(res => {
       this.setState({ totalPlayers: res.data });
     });
-    Axios.post(`https://internal-api.palace.network/titan/stats/totalHelps`, {
+    Axios.post(`${process.env.REACT_APP_API_URL}/titan/stats/totalHelps`, {
       accessToken: cookies.get('accessToken'),
       user: cookies.get('user')
     })
     .then(res => {
       this.setState({ totalHelps: res.data });
     });
-    Axios.get(`https://internal-api.palace.network/minecraft/server/online`)
+    Axios.get(`${process.env.REACT_APP_API_URL}/minecraft/server/online`)
     .then(res => {
       this.setState({ onlinePlayers: res.data.players });
     });

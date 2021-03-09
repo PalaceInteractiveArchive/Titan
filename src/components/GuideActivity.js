@@ -14,7 +14,7 @@ class GuideActivity extends React.Component {
   };
 
   componentDidMount() {
-    Axios.post(`https://internal-api.palace.network/titan/lookup/glog`, {
+    Axios.post(`${process.env.REACT_APP_API_URL}/titan/lookup/glog`, {
       accessToken: cookies.get('accessToken'),
       user: cookies.get('user'),
       uuid: this.props.uuid

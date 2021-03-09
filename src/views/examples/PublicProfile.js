@@ -66,7 +66,7 @@ class Profile extends React.Component {
       match: { params },
     } = this.props;
     this.setState({ uName: params.id });
-    Axios.post(`https://internal-api.palace.network/titan/lookup/general`, {
+    Axios.post(`${process.env.REACT_APP_API_URL}/titan/lookup/general`, {
       accessToken: cookies.get("accessToken"),
       user: cookies.get("user"),
       username: params.id,
@@ -79,7 +79,7 @@ class Profile extends React.Component {
       } else {
         this.setState({ userInfo: res1.data });
         Axios.post(
-          `https://internal-api.palace.network/titan/stats/getFriends/${res1.data.game.uuid}`,
+          `${process.env.REACT_APP_API_URL}/titan/stats/getFriends/${res1.data.game.uuid}`,
           {
             accessToken: cookies.get("accessToken"),
             user: cookies.get("user"),

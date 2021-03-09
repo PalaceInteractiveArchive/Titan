@@ -36,7 +36,7 @@ class ModerationTabs extends React.Component {
   };
 
   componentDidMount() {
-    Axios.post(`https://internal-api.palace.network/titan/lookup/moderation`, {
+    Axios.post(`${process.env.REACT_APP_API_URL}/titan/lookup/moderation`, {
       accessToken: cookies.get('accessToken'),
       user: cookies.get('user'),
       uuid: this.props.uuid
@@ -198,7 +198,7 @@ class ModerationTabs extends React.Component {
                                 <span>{moment(mute.expires).format('MMMM Do YYYY, h:mm:ss a')}</span>
                             </th>
                             <th scope="row">
-                                <span>{(mute.active ? <i class="fas fa-check-circle"></i> : <i class="fas fa-times"></i>)}</span>
+                                <span>{(mute.active ? <i className="fas fa-check-circle"></i> : <i className="fas fa-times"></i>)}</span>
                             </th>
                             <th scope="row">
                                 <Media className="align-items-center">
@@ -295,10 +295,10 @@ class ModerationTabs extends React.Component {
                                     <span>{moment(ban.expires).format('MMMM Do YYYY, h:mm:ss a')}</span>
                                 </th>
                                 <th scope="row">
-                                    <span>{(ban.permanent ? <i class="fas fa-check-circle"></i> : <i class="fas fa-times"></i>)}</span>
+                                    <span>{(ban.permanent ? <i className="fas fa-check-circle"></i> : <i className="fas fa-times"></i>)}</span>
                                 </th>
                                 <th scope="row">
-                                    <span>{(ban.active ? <i class="fas fa-check-circle"></i> : <i class="fas fa-times"></i>)}</span>
+                                    <span>{(ban.active ? <i className="fas fa-check-circle"></i> : <i className="fas fa-times"></i>)}</span>
                                 </th>
                                 <th scope="row">
                                     <Media className="align-items-center">

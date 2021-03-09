@@ -54,8 +54,8 @@ class AppEditor extends React.Component {
                 </CardHeader>
                 <CardBody>
                   <ReactFormBuilder
-                    url={`https://internal-api.palace.network/titan/application/getFormData/${this.state.appId}`}
-                    saveUrl={`https://internal-api.palace.network/titan/application/saveFormData/${this.state.appId}`}
+                    url={`${process.env.REACT_APP_API_URL}/titan/application/getFormData/${this.state.appId}`}
+                    saveUrl={`${process.env.REACT_APP_API_URL}/titan/application/saveFormData/${this.state.appId}`}
                     additionalBody={{user: cookies.get("user"), accessToken: cookies.get("accessToken")}}
                   />
                 </CardBody>

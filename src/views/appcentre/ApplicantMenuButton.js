@@ -2,7 +2,7 @@ import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-// import ListItemIcon from '@material-ui/core/ListItemIcon';
+import { useHistory } from 'react-router-dom';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 // import DeleteIcon from '@material-ui/icons/Delete';
 // import Divider from '@material-ui/core/Divider';
@@ -11,6 +11,8 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 // eslint-disable-next-line react/prop-types
 const MatMenu = ({ row, onDeleteRow, size }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const history = useHistory();
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -48,7 +50,7 @@ const MatMenu = ({ row, onDeleteRow, size }) => {
         onClose={handleClose}
       >
 
-        <MenuItem style={{fontFamily: 'Open Sans, sans-serif'}}>
+        <MenuItem style={{fontFamily: 'Open Sans, sans-serif'}} onClick={() => { history.push("/dash/appView/" + row.id) }}>
           View Application
         </MenuItem>
       </Menu>

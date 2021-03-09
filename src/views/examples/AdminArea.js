@@ -35,7 +35,7 @@ class AdminArea extends React.Component {
   }
 
     componentDidMount() {
-      Axios.post(`https://internal-api.palace.network/titan/stats/titanUserList`, {
+      Axios.post(`${process.env.REACT_APP_API_URL}/titan/stats/titanUserList`, {
         accessToken: cookies.get('accessToken'),
         user: cookies.get('user')
       })
@@ -46,7 +46,7 @@ class AdminArea extends React.Component {
     }
 
     getGroupInfo() {
-      Axios.post(`https://internal-api.palace.network/titan/stats/getGroups`, {
+      Axios.post(`${process.env.REACT_APP_API_URL}/titan/stats/getGroups`, {
         accessToken: cookies.get('accessToken'),
         user: cookies.get('user')
       })
@@ -67,7 +67,7 @@ class AdminArea extends React.Component {
       } else {
         action = 'remove';
       }
-      Axios.post(`https://internal-api.palace.network/titan/admin/update/${e.target.id}/chat`, {
+      Axios.post(`${process.env.REACT_APP_API_URL}/titan/admin/update/${e.target.id}/chat`, {
           accessToken: cookies.get('accessToken'),
           user: cookies.get('user'),
           action: action
@@ -84,7 +84,7 @@ class AdminArea extends React.Component {
         action = 'remove';
       }
 
-      Axios.post(`https://internal-api.palace.network/titan/admin/update/${e.target.id}/support`, {
+      Axios.post(`${process.env.REACT_APP_API_URL}/titan/admin/update/${e.target.id}/support`, {
           accessToken: cookies.get('accessToken'),
           user: cookies.get('user'),
           action: action
@@ -98,7 +98,7 @@ class AdminArea extends React.Component {
     }
 
     sendAlert() {
-      Axios.post(`https://internal-api.palace.network/titan/admin/alert/add/`, {
+      Axios.post(`${process.env.REACT_APP_API_URL}/titan/admin/alert/add/`, {
           accessToken: cookies.get('accessToken'),
           user: cookies.get('user'),
           alertContent: this.state.alertMsg

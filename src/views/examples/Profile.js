@@ -30,7 +30,7 @@ class Profile extends React.Component {
     .then(res => {
       let i = res.data.id;
       i= i.substr(0,8)+"-"+i.substr(8,4)+"-"+i.substr(12,4)+"-"+i.substr(16,4)+"-"+i.substr(20)
-      Axios.post(`https://internal-api.palace.network/titan/stats/getFriends/${i}`, {
+      Axios.post(`${process.env.REACT_APP_API_URL}/titan/stats/getFriends/${i}`, {
           accessToken: cookies.get('accessToken'),
           user: cookies.get('user')
       })

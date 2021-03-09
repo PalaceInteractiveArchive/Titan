@@ -3,6 +3,9 @@ import Icon from '@material-ui/icons/SettingsApplications';
 import DataTable from 'react-data-table-component';
 import MatMenu from './EditMenuButton';
 import Axios from 'axios';
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
 
 export default class EditTable extends React.Component {
   state = {
@@ -71,7 +74,10 @@ export default class EditTable extends React.Component {
   }
 
   componentDidMount() {
-    Axios.get(`https://internal-api.palace.network/titan/application/getAllTypes`)
+    Axios.post(`${process.env.REACT_APP_API_URL}/titan/application/getAllTypes`, {
+        accessToken: cookies.get('accessToken'),
+        user: cookies.get('user'),
+    })
     .then((res) => {
       this.setState({ data: res.data})
     })

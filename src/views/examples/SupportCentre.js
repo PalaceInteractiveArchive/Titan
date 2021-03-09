@@ -36,7 +36,7 @@ class SupportCentre extends React.Component {
         let start = new Date(document.getElementById('absenceStartDate').value).getTime() / 1000;
         let end = new Date(document.getElementById('absenceEndDate').value).getTime() / 1000
 
-          Axios.post(`https://internal-api.palace.network/titan/support/submitAbsence`, {
+          Axios.post(`${process.env.REACT_APP_API_URL}/titan/support/submitAbsence`, {
             accessToken: cookies.get('accessToken'),
             user: cookies.get('user'),
             name: document.getElementById('absenceName').value,

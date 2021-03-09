@@ -36,7 +36,7 @@ class Login extends React.Component {
                     href="https://www.palace.network"
                     target="_blank"
                   >
-                    Palace Network Development Team
+                    Palace Network
                   </a>
                 </div>
               </Col>
