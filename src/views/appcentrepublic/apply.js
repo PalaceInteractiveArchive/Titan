@@ -127,7 +127,7 @@ class Index extends React.Component {
                   <h3 className=" mb-0">{this.state.application.name}</h3>
                 </CardHeader>
                 <CardBody>
-                    Fill out the Applicaiton Below. Your session expires at {this.state.time}. Writing answers in a Google Doc first so you don't lose anything is a smart idea!
+                    Fill out the application Below. Your session expires at {this.state.time}. Writing answers in a Google Doc first so you don't lose anything is a smart idea!
                     <ReactFormGenerator
                         className="mt-3"
                         form_method="POST"

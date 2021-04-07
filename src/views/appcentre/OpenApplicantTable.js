@@ -12,6 +12,7 @@ export default class ApplicantTable extends React.Component {
     loaded: false,
     data: [],
     types: [],
+    loadingText: "Just Loading this for you. One moment!",
     columns: [
       {
         cell: () => <Icon style={{ fill: '#43a047' }} />,
@@ -93,24 +94,32 @@ export default class ApplicantTable extends React.Component {
     })
     .then((res) => {
       this.setState({ data: res.data})
-    })
-    Axios.post(`${process.env.REACT_APP_API_URL}/titan/application/getAllTypes`, {
-      accessToken: cookies.get('accessToken'),
-      user: cookies.get('user'),
-    })
-    .then((res) => {
-      let data = this.state.data;
-      data.forEach(element => {
-        let selected = res.data.find(o => o.appId === parseInt(element.appId));
-        element.appId = selected.name;
-        Axios.get(`https://api.ashcon.app/mojang/v2/user/${element.uuid}`)
-        .then((res) => {
-            element.username = res.data.username;
-            element.outcome = element.outcome[0].toUpperCase() + element.outcome.substring(1);
-            this.setState({ data: data });
-            this.setState({ loaded: true})
+      Axios.post(`${process.env.REACT_APP_API_URL}/titan/application/getAllTypes`, {
+        accessToken: cookies.get('accessToken'),
+        user: cookies.get('user'),
+      })
+      .then((res) => {
+        let data = this.state.data;
+        this.setState({ loadingText: "Two seconds now!" })
+        var fetching = new Promise((resolve, reject) => {
+          let i = 0;
+          data.forEach((element, index) => {
+            let selected = res.data.find(o => o.appId === parseInt(element.appId));
+            element.appId = selected.name;
+            Axios.get(`https://api.ashcon.app/mojang/v2/user/${element.uuid}`)
+            .then((res) => {
+                i++
+                element.username = res.data.username;
+                element.outcome = element.outcome[0].toUpperCase() + element.outcome.substring(1);
+                this.setState({ data: data });
+                if (i === data.length) resolve();
+            })
+          });
+        });
+        fetching.then(() => {
+          this.setState({ loaded: true})
         })
-      });
+      })
     })
   }
 
@@ -143,9 +152,8 @@ export default class ApplicantTable extends React.Component {
   
   render() {
     if (!this.state.loaded) {
-      return(<h2>Just Loading this for you. One moment!</h2>)
+      return(<h2>{this.state.loadingText}</h2>)
     } else {
-      console.log(this.state.data)
       return(
       <DataTable
       title="All Open Applications"

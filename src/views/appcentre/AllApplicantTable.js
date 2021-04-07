@@ -93,25 +93,32 @@ export default class ApplicantTable extends React.Component {
     })
     .then((res) => {
       this.setState({ data: res.data})
-    })
-    Axios.post(`${process.env.REACT_APP_API_URL}/titan/application/getAllTypes`, {
-      accessToken: cookies.get('accessToken'),
-      user: cookies.get('user'),
-    })
-    .then((res) => {
-      let data = this.state.data;
-      data.forEach(element => {
-        console.log(element)
-        let selected = res.data.find(o => o.appId === parseInt(element.appId));
-        element.appId = selected.name;
-        Axios.get(`https://api.ashcon.app/mojang/v2/user/${element.uuid}`)
-        .then((res) => {
-            element.username = res.data.username;
-            element.outcome = element.outcome[0].toUpperCase() + element.outcome.substring(1);
-            this.setState({ data: data });
-            this.setState({ loaded: true})
+      Axios.post(`${process.env.REACT_APP_API_URL}/titan/application/getAllTypes`, {
+        accessToken: cookies.get('accessToken'),
+        user: cookies.get('user'),
+      })
+      .then((res) => {
+        let data = this.state.data;
+        var fetching = new Promise((resolve, reject) => {
+          let i = 0;
+          data.forEach(element => {
+            console.log(element)
+            let selected = res.data.find(o => o.appId === parseInt(element.appId));
+            element.appId = selected.name;
+            Axios.get(`https://api.ashcon.app/mojang/v2/user/${element.uuid}`)
+            .then((res) => {
+                i++;
+                element.username = res.data.username;
+                element.outcome = element.outcome[0].toUpperCase() + element.outcome.substring(1);
+                this.setState({ data: data });
+                if (i === data.length) resolve();
+            })
+          });
+        });
+        fetching.then(() => {
+          this.setState({ loaded: true})
         })
-      });
+      })
     })
   }
 
