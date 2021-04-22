@@ -131,6 +131,7 @@ class ChatTab extends React.Component {
             <Table className="align-items-center" responsive>
                 <thead className="thead-light">
                     <tr>
+                    <th scope="col">Channel</th>
                     <th scope="col">Message</th>
                     <th scope="col">Time Sent</th>
                     </tr>
@@ -139,6 +140,9 @@ class ChatTab extends React.Component {
                     {this.state.chat.length ?
                     this.state.chat.map(msg => (
                         <tr key={Math.floor(Math.random() * 60000) + 1  }>
+                        <th scope="row" style={{whiteSpace: "normal"}}>
+                            <span>{msg.channel}</span>
+                        </th>
                         <th scope="row" style={{whiteSpace: "normal"}}>
                             <span>{msg.message}</span>
                         </th>
